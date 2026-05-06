@@ -1,5 +1,5 @@
 {
-	description = "MATOO's nixos den config testing";
+	description = "Dendristic nixos configuration";
 
 	inputs = {
 		# packages
