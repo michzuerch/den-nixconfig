@@ -1,6 +1,7 @@
 {inputs, ...}: let
   # laptop only has one disk, so use device path rather than uuid
-  primary_disk_path = "/dev/nvme0n1";
+  primary_disk_path = "/dev/sdb";
+  secondary_disk_path = "/debv/sda";
   mount_options = [
     "compress=zstd:3" # automatic file compression if possible
     "discard=async" # stagger discards to improve i/o
@@ -34,7 +35,7 @@ in {
                 };
               };
               encrypedSwap = {
-                size = "8G";
+                size = "16G";
                 content = {
                   type = "swap";
                   # mutually exclusive with resumeDevice
@@ -81,12 +82,29 @@ in {
                         mountOptions = mount_options;
                       };
                       # on laptop this is on primary disk
-                      "@games" = {
-                        mountpoint = "/home/matoo/Games";
-                        mountOptions = mount_options;
-                      };
+                      #"@games" = {
+                      #  mountpoint = "/home/matoo/Games";
+                      #  mountOptions = mount_options;
+                      #};
                     };
                   };
+                };
+              };
+            };
+          };
+        };
+        secondary = {
+          type = "disk";
+          device = secondary_disk_path;
+          content = {
+            type = "gpt";
+            partitions = {
+              blockchain = {
+                size = "100%";
+                content = {
+                  type = "filesystem";
+                  format = "ext4";
+                  mountpoint = "/blockchain";
                 };
               };
             };
