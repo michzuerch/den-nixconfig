@@ -55,7 +55,7 @@
         qemuGuest.enable = true;
         spice-vdagentd.enable = true;
         xserver.enable = true;
-        # xserver.videoDrivers = ["virtio"];
+        xserver.videoDrivers = ["virtio"];
       };
     };
 

@@ -5,6 +5,10 @@ Dendristic nixos configuration
 
 Nixos configuration michzuerch 2026
 
+## Run VM for testing config
+
+''bash nix run .
+
 ## Partitioning with disko
 
 Boot from the installer-iso and run ''bash sudo disko --mode disko --flake
@@ -20,10 +24,6 @@ github:michzuerch/den-nixconfig#<hostname> ''
 ## Set the password for a user
 
 ''bash sudo nixos-enter --root /mnt -c 'passwd <username>' ''
-
-## build iso for installer
-
-''bash nix build .#nixosConfigurations.installer.config.system.build.isoImage ''
 
 ## sops
 

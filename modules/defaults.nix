@@ -1,30 +1,30 @@
 {
-  inputs,
-  den,
-  ...
+	inputs,
+	den,
+	...
 }: {
-  imports = [inputs.den.flakeModule];
+	imports = [inputs.den.flakeModule];
 
-  den.schema = {
-    host.home-manager.enable = true;
-  };
+	den.schema = {
+		host.home-manager.enable = true;
+	};
 
-  den.default = {
-    nixos.system.stateVersion = "25.11";
-    homeManager.home.stateVersion = "25.11";
+	den.default = {
+		nixos.system.stateVersion = "25.11";
+		homeManager.home.stateVersion = "25.11";
 
-    includes = [
-      den.provides.self'
-    ];
+		includes = [
+			den.provides.self'
+		];
 
-    user = {
-    };
+		user = {
+		};
 
-    nixos = {
-      nixpkgs.config.allowUnfree = false;
-    };
+		nixos = {
+			nixpkgs.config.allowUnfree = false;
+		};
 
-    homeManager = {
-    };
-  };
+		homeManager = {
+		};
+	};
 }
